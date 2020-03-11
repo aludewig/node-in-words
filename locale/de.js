@@ -5,6 +5,7 @@ var utils = require('../utils');
 var particles = require('../particles');
 var P = particles.Particle;
 var Particles = particles.Particles;
+var Words = particles.Words;
 
 var lessThanHundred = (function () {
   var atoms = {
@@ -39,7 +40,7 @@ var lessThanHundred = (function () {
       return utils.splitHandle({
         cutOffLowest: 1,
         join: function (ten, single) {
-          return Particles(single, tenUnd, Particles(ten, tenZig));
+          return Words(single, tenUnd, Particles(ten, tenZig));
         },
         handleParts: function (val) { return _inWords(val, params); }
       }, val);
@@ -53,7 +54,7 @@ var medium = function (joiner, pos) {
     return utils.splitHandle({
       cutOffLowest: pos,
       join: function (higher, lower) {
-        return Particles(higher, joiner, lower);
+        return Words(higher, joiner, lower);
       },
       handleHigherPart: function (val) {
         return _inWords(val, {});
